@@ -65,8 +65,8 @@ var addRelationship = function(concept1, concept2, relationship) {
 
 
 // Define the dimensions of the graph
-var width = 1300,
-    height = 900;
+var width = 960,
+    height = 500;
 
 // Create a force layout and set props like size, link dist, charge
 var force = d3.layout.force()

@@ -17,3 +17,22 @@
   font-family: Helvetica, Arial, Sans-Serif;
   font-size: 18px
 }
+
+
+h1 {
+  font-size: 36pt;
+  font-family: 'Helvetica', serif;
+  text-align: center;
+  padding-bottom: 36px;
+}
+
+input {
+  text-align: center;
+  line-height: 25px;
+  font-family: 'Helvetica', serif;
+  font-size: 16pt;
+}
+
+#add {
+  font-size: 16pt;
+}
