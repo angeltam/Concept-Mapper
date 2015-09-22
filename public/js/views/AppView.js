@@ -8,9 +8,13 @@ var AppView = Backbone.View.extend({
 
     this.title = new TitleView();
 
-    // this.input = new InputView({
+    //this.input = new InputView({
     //   collection: this.collection
     // });
+
+    this.graph = new GraphView( {
+      model: this.model   // Pass along the AppView's Graph model; may want to give AppView a collection later instead
+    });
 
     this.render();
   },
@@ -19,7 +23,8 @@ var AppView = Backbone.View.extend({
   render: function() {
 
     this.$el.append([
-      this.title.$el
+      this.title.$el,
+      this.graph.$el
       // this.input.$el,
     ]);
 

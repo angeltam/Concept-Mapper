@@ -63,7 +63,6 @@ var addRelationship = function(concept1, concept2, relationship) {
 /*  FORCE-DIRECTED GRAPH */
 /*************************/
 
-
 // Define the dimensions of the graph
 var width = 1300,
     height = 900;
@@ -97,9 +96,6 @@ force
   .links(graph.links)
   .on("tick", tick);
 
-// Render the data
-draw();
-
 // Position the nodes and links constantly
 function tick() {
   link.attr("x1", function(d) { return d.source.x; })
@@ -120,6 +116,9 @@ function tick() {
 function dragstart(d) {
   d3.select(this).classed("fixed", d.fixed = true);
 }
+
+// Render the data
+draw();
 
 // function dblclick(d) {
 //   d3.select(this).classed("fixed", d.fixed = false);

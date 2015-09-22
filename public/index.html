@@ -9,9 +9,7 @@
 
   <body>
 
-    <!-- Where the entire app renders -->
-    <div id="app"></div>
-
+    <!-- Form goes into input view -->
     <form onsubmit="addItem()">
       <input type="text" id="concept1" placeholder="Concept 1">
       <input type="text" id="relationship" placeholder="Relationship">
@@ -19,8 +17,11 @@
       <button id="add">Add</button>
     </form>
 
-    <!-- D3 renders graph here -->
-    <div id="graph"></div>
+    <!-- Where the entire app renders -->
+    <div id="app"></div>
+
+    <!-- Graph goes into graph view -->
+    <div id="graphDisplay"></div>
 
     <!-- Libraries -->
     <script src="lib/jquery.min.js"></script>
@@ -41,7 +42,8 @@
     <script src="js/app.js"></script>
 
     <!-- Draw graph -->
-    <script src="js/map.js"></script>
+    <!--<script src="js/map.js"></script>-->
+    <!--<script src="js/map-try.js"></script>-->
   </body>
 
 </html>

@@ -26,6 +26,13 @@ h1 {
   padding-bottom: 36px;
 }
 
+h2 {
+  font-size: 20pt;
+  font-family: 'Helvetica', serif;
+  text-align: center;
+  padding-bottom: 15px;
+}
+
 input {
   text-align: center;
   line-height: 25px;
