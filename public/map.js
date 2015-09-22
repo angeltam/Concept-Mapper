@@ -1,3 +1,7 @@
+/*********/
+/*  DATA */
+/*********/
+
 var graph =
   {
     "nodes":[
@@ -15,6 +19,49 @@ var graph =
     ]
   };
 
+var addConcept = function(concept) {
+  // Add only if concept is not already in the graph
+  if ( !hasConcept(concept) ) {
+    var newSource = {"name": concept, "group": 1};
+    graph.nodes.push(newSource);
+    console.log("added ", concept);
+  }
+};
+
+var hasConcept = function(concept) {
+  return _.some(graph.nodes, function(node) {
+    return node.name === concept;
+  });
+};
+
+var addRelationship = function(concept1, concept2, relationship) {
+  var newSourceIndex;
+  var newTargetIndex;
+  for (var i=0; i<graph.nodes.length; i++) {
+    if (graph.nodes[i].name == concept1) {
+      console.log(i);
+      newSourceIndex = i;
+    }
+    if (graph.nodes[i].name == concept2) {
+      console.log(i);
+      newTargetIndex = i;
+    }
+  }
+  var newLink = {
+    "source": newSourceIndex,
+    "target": newTargetIndex,
+    "relationship": relationship
+  };
+  graph.links.push(newLink);
+  console.log("added ", relationship);
+
+};
+
+
+/*************************/
+/*  FORCE-DIRECTED GRAPH */
+/*************************/
+
 
 // Define the dimensions of the graph
 var width = 960,
@@ -26,7 +73,6 @@ var force = d3.layout.force()
   .charge(-400)
   .linkDistance(100);
 
-
 // Allow drag on force layout
 var drag = force.drag()
   .on("dragstart", dragstart);
@@ -36,6 +82,8 @@ var svg = d3.select('#graph').append('svg')
     .attr('width', width)
     .attr('height', height);
 
+var link = svg.selectAll(".link");
+var node = svg.selectAll(".node");
 
 // d3.json("miserables.json", function(error, sample) {
 //  if (error) throw error;
@@ -46,34 +94,13 @@ var svg = d3.select('#graph').append('svg')
 force
   .nodes(graph.nodes)
   .links(graph.links)
-  .start();
+  .on("tick", tick);
 
-// Bind the link data to a line element
-// Must do that before binding the nodes so nodes sit on top
-var link = svg.selectAll(".link") // if not element not there already, it will create it
-  .data(graph.links)  // bind the data
-  .enter().append("line") // append the line element
-  .attr("class", "link"); // add a class
-
-// Bind the node data to a group element, which will contain rectangle and text
-var node = svg.selectAll(".node")
-  .data(graph.nodes)
-  .enter().append("g")
-  .attr("class", "node")
-  .call(drag);
-
-// Add rectangle element to the node
-node.append("circle")
-  .attr("class", "node-container")
-  .attr("r", 50);
-
-node.append("text")
-  .text(function(d) { return d.name; })
-  .attr("class", "node-text")
-  .attr("text-anchor", "middle");
+// Render the data
+draw();
 
 // Position the nodes and links constantly
-force.on("tick", function() {
+function tick() {
   link.attr("x1", function(d) { return d.source.x; })
       .attr("y1", function(d) { return d.source.y; })
       .attr("x2", function(d) { return d.target.x; })
@@ -87,8 +114,7 @@ force.on("tick", function() {
 
   node.select("text").attr("x", function(d) { return d.x; })
                      .attr("y", function(d) { return d.y; });
-
-});
+}
 
 function dragstart(d) {
   d3.select(this).classed("fixed", d.fixed = true);
@@ -97,3 +123,73 @@ function dragstart(d) {
 // function dblclick(d) {
 //   d3.select(this).classed("fixed", d.fixed = false);
 // }
+
+
+/************************/
+/*  UPDATE RENDER GRAPH */
+/************************/
+
+function draw() {
+
+  // Remove old links and nodes
+  link.remove();
+  node.remove();
+
+  // Select all links and nodes
+  link = svg.selectAll(".link");
+  node = svg.selectAll(".node");
+
+  // Bind the link data to a line element
+  // Must do that before binding the nodes so nodes sit on top
+  link = link.data(graph.links); // bind the data
+  link.enter().append("line") // append the line element
+    .attr("class", "link"); // add a class
+
+  // Remove any links with no data
+  link.exit().remove();
+
+  // Bind the node data to a group element, which will contain circle and text
+  node = node.data(graph.nodes);
+  node.enter().append("g")
+    .attr("class", "node")
+    .call(drag);
+
+  // Add circle element to the node
+  node.append("circle")
+    .attr("class", "node-container")
+    .attr("r", 50);
+
+  // Add text to the node
+  node.append("text")
+    .text(function(d) { return d.name; })
+    .attr("class", "node-text")
+    .attr("text-anchor", "middle");
+
+  // Remove any nodes with no data
+  node.exit().remove();
+
+  // Restart the force layout
+  force.start();
+}
+
+
+/******************/
+/* Event listener */
+/******************/
+
+// $( document ).ready(function() {
+
+//   // When user submits data
+//   $('#add').click(function () {
+//     console.log("added stuff");
+//     var concept1 = $('#concept1').val();
+//     var concept2 = $('#concept2').val();
+//     var rel = $('#relationship').val();
+
+//     addConcept(concept1);
+//     addConcept(concept2);
+//     addRelationship(concept1, concept2, rel);
+
+//   });
+
+// });

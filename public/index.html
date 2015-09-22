@@ -8,13 +8,23 @@
   </head>
 
   <body>
-    <div>This is the graph</div>
+
+    <form onsubmit="addItem()">
+      <label>Concept 1</label>
+      <input type="text" id="concept1" placeholder="Concept 1">
+      <label>Relationship</label>
+      <input type="text" id="relationship" placeholder="Relationship">
+      <label>Concept 2</label>
+      <input type="text" id="concept2" placeholder="Concept 2">
+      <button id="add">Add</button>
+    </form>
 
     <!-- D3 renders graph here -->
     <div id="graph"></div>
 
     <script src="./lib/jquery.min.js"></script>
     <script src="./lib/d3.min.js"></script>
+    <script src="./lib/underscore.min.js"></script>
     <script src="map.js"></script>
   </body>
 
