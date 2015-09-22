@@ -65,7 +65,7 @@ var node = svg.selectAll(".node")
 // Add rectangle element to the node
 node.append("circle")
   .attr("class", "node-container")
-  .attr("r", 40);
+  .attr("r", 50);
 
 node.append("text")
   .text(function(d) { return d.name; })

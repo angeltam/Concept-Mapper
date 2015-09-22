@@ -5,7 +5,15 @@
 
 .node {
   cursor: move;
-  fill: white;
+}
+
+.node-container {
+  fill: gray;
   stroke: #000;
   stroke-width: 1.5px;
+}
+
+.node-text {
+  font-family: Helvetica, Arial, Sans-Serif;
+  font-size: 18px
 }
