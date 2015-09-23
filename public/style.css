@@ -1,6 +1,6 @@
 .link {
-  stroke: #000;
-  stroke-width: 1.5px;
+  stroke: #444444;
+  stroke-width: 3px;
 }
 
 .node {
@@ -8,22 +8,22 @@
 }
 
 .node-container {
-  fill: gray;
-  stroke: #000;
+  fill: #6ff2e2;
+  stroke: #6ff2e2;
   stroke-width: 1.5px;
 }
 
 .node-text {
   font-family: Helvetica, Arial, Sans-Serif;
+  font-weight: bold;
   font-size: 18px
 }
-
 
 h1 {
   font-size: 36pt;
   font-family: 'Helvetica', serif;
   text-align: center;
-  padding-bottom: 36px;
+  color: #2d5ca8;
 }
 
 h2 {
@@ -31,19 +31,18 @@ h2 {
   font-family: 'Helvetica', serif;
   text-align: center;
   padding-bottom: 15px;
+  color: #2d5ca8;
 }
 
 input {
   text-align: center;
-  line-height: 25px;
+  line-height: 28px;
   font-family: 'Helvetica', serif;
   font-size: 16pt;
-}
-
-#add {
-  font-size: 16pt;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 form {
-  padding-left: 200px;
+  text-align: center;
 }

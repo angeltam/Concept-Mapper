@@ -34,13 +34,13 @@ var GraphView = Backbone.View.extend({
 
     // Define the dimensions of the graph
     var width = 1400,
-        height = 500;
+        height = 400;
 
     // Create a force layout and set props like size, link dist, charge
     this.force = d3.layout.force()
       .size([width, height])
-      .charge(-2000)
-      .linkDistance(100);
+      .charge(-500)
+      .linkDistance(200);
 
     // Allow drag on force layout
     this.drag = this.force.drag()

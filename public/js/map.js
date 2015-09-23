@@ -2,7 +2,7 @@
 /*  DATA */
 /*********/
 
-var graph2 =
+var graph =
   {
     "nodes":[
       {"name":"Boy","group":1},
@@ -129,11 +129,6 @@ function dragstart(d) {
   d3.select(this).classed("fixed", d.fixed = true);
 }
 
-// function dblclick(d) {
-//   d3.select(this).classed("fixed", d.fixed = false);
-// }
-
-
 /************************/
 /*  UPDATE RENDER GRAPH */
 /************************/
@@ -180,25 +175,3 @@ function draw() {
   // Restart the force layout
   force.start();
 }
-
-
-/******************/
-/* Event listener */
-/******************/
-
-// $( document ).ready(function() {
-
-//   // When user submits data
-//   $('#add').click(function () {
-//     console.log("added stuff");
-//     var concept1 = $('#concept1').val();
-//     var concept2 = $('#concept2').val();
-//     var rel = $('#relationship').val();
-
-//     addConcept(concept1);
-//     addConcept(concept2);
-//     addRelationship(concept1, concept2, rel);
-
-//   });
-
-// });

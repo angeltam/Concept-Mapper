@@ -23,9 +23,6 @@ var InputView = Backbone.View.extend({
       var concept1 = $('#concept1').val();
       var concept2 = $('#concept2').val();
       var rel = $('#relationship').val();
-      console.log(concept1);
-      console.log(concept2);
-      console.log(relationship);
       this.model.addToGraph(concept1, concept2, rel);
       this.resetInput();
     }
@@ -33,15 +30,10 @@ var InputView = Backbone.View.extend({
   },
 
   resetInput: function() {
-    // this.$el.attr({
-    //   placeholder: 'Enter a zip code'
-    // });
     this.clearInput();
   },
 
   clearInput: function() {
     this.$el.children("input").val('');
-    // this.$el.val('');
   }
-
 });

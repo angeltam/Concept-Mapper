@@ -53,8 +53,6 @@ var Graph = Backbone.Model.extend({
     this.get("links").push(newLink);
     console.log("added ", relationship);
 
-  },
-
-
+  }
 
 });
