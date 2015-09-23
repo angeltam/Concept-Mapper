@@ -10,7 +10,7 @@
   <body>
 
     <!-- Form goes into input view -->
-    <form onsubmit="addItem()">
+    <form id="inputForm" onsubmit="return false">
       <input type="text" id="concept1" placeholder="Concept 1">
       <input type="text" id="relationship" placeholder="Relationship">
       <input type="text" id="concept2" placeholder="Concept 2">
@@ -19,6 +19,8 @@
 
     <!-- Where the entire app renders -->
     <div id="app"></div>
+
+    <div id="graph"></div>
 
     <!-- Graph goes into graph view -->
     <div id="graphDisplay"></div>

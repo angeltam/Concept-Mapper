@@ -2,7 +2,7 @@
 /*  DATA */
 /*********/
 
-var graph =
+var graph2 =
   {
     "nodes":[
       {"name":"Boy","group":1},
@@ -56,6 +56,14 @@ var addRelationship = function(concept1, concept2, relationship) {
   graph.links.push(newLink);
   console.log("added ", relationship);
 
+};
+
+var addToGraph = function(concept1, concept2, relationship) {
+  addConcept(concept1);
+  addConcept(concept2);
+  addRelationship(concept1, concept2, relationship);
+  console.log("Adding input data to the graph");
+  draw();
 };
 
 

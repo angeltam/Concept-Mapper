@@ -1,50 +1,47 @@
 var InputView = Backbone.View.extend({
 
-  // tagName: 'input',
-  // // el: '<input>',
+  el: '#inputForm',
 
-  // events: {
-  //   'keydown': 'keyAction',
-  // },
+  events: {
+    'keydown': 'keyAction',
+  },
 
-  // initialize: function() {
-  //   this.render();
-  // },
+  initialize: function() {
+    this.render();
+  },
 
-  // render: function() {
-  //   this.resetInput();
-  //   return this;
-  // },
+  render: function() {
+    this.resetInput();
+    return this;
+  },
 
-  // keyAction: function(e) {
+  keyAction: function(e) {
 
-  //   var isEnterKey = (e.which === 13);
+    var isEnterKey = (e.which === 13);
 
-  //   if(isEnterKey && !this.$el.val().trim().match(/^(?=.*[0-9].*)[0-9]{5}$/)) {
+    if(isEnterKey) {
+      var concept1 = $('#concept1').val();
+      var concept2 = $('#concept2').val();
+      var rel = $('#relationship').val();
+      console.log(concept1);
+      console.log(concept2);
+      console.log(relationship);
+      this.model.addToGraph(concept1, concept2, rel);
+      this.resetInput();
+    }
 
-  //     this.$el.attr({
-  //       placeholder: 'Sorry, zip code invalid.'
-  //     });
-  //     this.clearInput();
+  },
 
-  //   } else if(isEnterKey) {
+  resetInput: function() {
+    // this.$el.attr({
+    //   placeholder: 'Enter a zip code'
+    // });
+    this.clearInput();
+  },
 
-  //     this.collection.addWeatherEntry(this.$el.val());
-  //     this.resetInput();
-
-  //   }
-
-  // },
-
-  // resetInput: function() {
-  //   this.$el.attr({
-  //     placeholder: 'Enter a zip code'
-  //   });
-  //   this.clearInput();
-  // },
-
-  // clearInput: function() {
-  //   this.$el.val('');
-  // }
+  clearInput: function() {
+    this.$el.children("input").val('');
+    // this.$el.val('');
+  }
 
 });

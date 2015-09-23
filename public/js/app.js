@@ -1,25 +1,8 @@
-// Initial test data
-var graph =
-  {
-    "title": "The Best Map Ever",
-
-    "nodes":[
-      {"name":"Boy","group":1},
-      {"name":"Dog","group":1},
-      {"name":"Cat","group":1},
-      {"name":"House","group":1}
-    ],
-    "links":[
-      {"source":0, "target":1, "relationship": "loves"},
-      {"source":0, "target":2, "relationship": "loves"},
-      {"source":0, "target":3, "relationship": "lives in"},
-      {"source":1, "target":3, "relationship": "lives in"},
-      {"source":1, "target":2, "relationship": "hates"}
-    ]
-  };
-
 // On launch, render a new AppView
+var graphModel = new Graph();
+// graphModel.addToGraph("Boy", "Dog", "loves");
+
 var app = new AppView({
   // This AppView is linked to a new Graph model that got the data above
-  model: new Graph(graph)
+  model: graphModel
 });

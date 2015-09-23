@@ -43,3 +43,7 @@ input {
 #add {
   font-size: 16pt;
 }
+
+form {
+  padding-left: 200px;
+}

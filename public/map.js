@@ -59,6 +59,14 @@ var addRelationship = function(concept1, concept2, relationship) {
 };
 
 
+var addToGraph = function(concept1, concept2, relationship) {
+  this.addConcept(concept1);
+  this.addConcept(concept2);
+  this.addRelationship(concept1, concept2, relationship);
+  console.log("Adding input data to the graph");
+};
+
+
 /*************************/
 /*  FORCE-DIRECTED GRAPH */
 /*************************/

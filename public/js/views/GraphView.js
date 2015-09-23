@@ -1,39 +1,38 @@
 var GraphView = Backbone.View.extend({
 
-  className: 'graphContainer',
+  className: 'graphTitle',
 
   template: _.template('<h2><%= title %></h2>'),
 
   initialize: function() {
 
-    this.graph = new this.Graph();
+    // Initialize the map
+    this.graph = new this.Graph(this.model.attributes);
+
+    console.log("graphview got this ", this.model.attributes);
 
     // Re-render when model changes
     this.listenTo(this.model, 'change', this.render);
+
+    this.listenTo(this.model, 'addedStuff', this.render);
+
+    // Populate the template with title from model
+    var title = this.template({
+      title: this.model.get('title')
+    });
+
+    // Append title to the DOM
+    this.$el.append([title]);
+
     // First time render
     this.render();
-
   },
 
-  Graph: function() {
+  Graph: function(modelData) {
+
+    this.data = modelData;
+
     // Define the dimensions of the graph
-
-    this.data = {
-      "nodes":[
-        {"name":"Boy","group":1},
-        {"name":"Dog","group":1},
-        {"name":"Cat","group":1},
-        {"name":"House","group":1}
-      ],
-      "links":[
-        {"source":0, "target":1, "relationship": "loves"},
-        {"source":0, "target":2, "relationship": "loves"},
-        {"source":0, "target":3, "relationship": "lives in"},
-        {"source":1, "target":3, "relationship": "lives in"},
-        {"source":1, "target":2, "relationship": "hates"}
-      ]
-    };
-
     var width = 1400,
         height = 500;
 
@@ -63,6 +62,7 @@ var GraphView = Backbone.View.extend({
       .links(this.data.links)
       .on("tick", tick.bind(this));
 
+    // Keep track of position of all elements
     function tick() {
       this.link.attr("x1", function(d) { return d.source.x; })
           .attr("y1", function(d) { return d.source.y; })
@@ -79,8 +79,7 @@ var GraphView = Backbone.View.extend({
                          .attr("y", function(d) { return d.y; });
     }
 
-    this.dragstart =
-
+    // Render the map
     this.draw = function() {
       this.link.remove();
       this.node.remove();
@@ -107,7 +106,7 @@ var GraphView = Backbone.View.extend({
       // Add circle element to the node
       this.node.append("circle")
         .attr("class", "node-container")
-        .attr("r", 50);
+        .attr("r", 60);
 
       // Add text to the node
       this.node.append("text")
@@ -120,27 +119,21 @@ var GraphView = Backbone.View.extend({
 
       // Restart the force layout
       this.force.start();
-
-      return this.svg;
     }
 
     console.log("this is the graph object initalized", this);
   },
 
-
   render: function() {
 
-    // Populate the template with data
-    var title = this.template({
-      title: this.model.get('title')
-    });
+    console.log("redrawing");
 
-    // Render the graph using D3 code
+    // Update the association to the model
+    this.graph.data = this.model.attributes;
+    // Render and append the graph using D3 code
     this.graph.draw();
 
-    // Append title and graph to the DOM
-    this.$el.append([title]);
-
+    return this;
   }
 
 });
